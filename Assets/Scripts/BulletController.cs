@@ -24,12 +24,6 @@ public class BulletController
         rb.velocity = _firePoint.forward * _fireSpeed * Time.deltaTime;
     }
 
-    public void OnBulletCollision(Collider collider)
-    {
-        // Handle collision logic here
-        // GameObject.Destroy(bulletView.gameObject);
-    }
-
     public BulletModel GetBulletModel()
     {
         return bulletModel;

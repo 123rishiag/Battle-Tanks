@@ -151,18 +151,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankList:
-  - movementSpeed: 100
-    rotationSpeed: 50
+  - movementSpeed: 30
+    rotationSpeed: 10
     tankType: 0
-    color: {fileID: 2100000, guid: b4d1e2e592cd5ed459329dc52de6b865, type: 2}
-  - movementSpeed: 70
-    rotationSpeed: 30
+    tankColor: {fileID: 2100000, guid: b4d1e2e592cd5ed459329dc52de6b865, type: 2}
+    bulletType: 1
+  - movementSpeed: 25
+    rotationSpeed: 6
     tankType: 1
-    color: {fileID: 2100000, guid: ff21ff0ea9b18924bb1fdfbb0e58f5cb, type: 2}
-  - movementSpeed: 150
-    rotationSpeed: 70
+    tankColor: {fileID: 2100000, guid: ff21ff0ea9b18924bb1fdfbb0e58f5cb, type: 2}
+    bulletType: 0
+  - movementSpeed: 40
+    rotationSpeed: 12
     tankType: 2
-    color: {fileID: 2100000, guid: 463052f3f7389124f9e7b34b0b931d0d, type: 2}
+    tankColor: {fileID: 2100000, guid: 463052f3f7389124f9e7b34b0b931d0d, type: 2}
+    bulletType: 2
   tankView: {fileID: 6368209867558235006, guid: 67c93dcae626cd14eb927ce97fc4b4e6,
     type: 3}
 --- !u!4 &310589867
@@ -223,15 +226,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletList:
-  - bulletSpeed: 1000
+  - bulletSpeed: 50
     bulletDamage: 0
     bulletType: 0
-    color: {fileID: 2100000, guid: 87d2e70ca18454e4f855f8d99afb32e3, type: 2}
-  - bulletSpeed: 10
+    color: {fileID: 2100000, guid: b3a1f2f69b4c3a84cba5446e31e87c20, type: 2}
+  - bulletSpeed: 70
     bulletDamage: 0
     bulletType: 1
-    color: {fileID: 2100000, guid: 87bf8b67d0a902842a3b617c1c75d6e5, type: 2}
-  - bulletSpeed: 10
+    color: {fileID: 2100000, guid: 6221f2fbc7212d94cb9c069ee262d824, type: 2}
+  - bulletSpeed: 100
     bulletDamage: 0
     bulletType: 2
     color: {fileID: 2100000, guid: e7df269b1d6121e4787b2f27aab18dbe, type: 2}
@@ -396,10 +399,6 @@ PrefabInstance:
     - target: {fileID: 1633404186159690, guid: 0aac6aef14f064c3fb626270cff2683b, type: 3}
       propertyPath: m_Name
       value: CompleteLevelArt
-      objectReference: {fileID: 0}
-    - target: {fileID: 1633404186159690, guid: 0aac6aef14f064c3fb626270cff2683b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4366463266053016, guid: 0aac6aef14f064c3fb626270cff2683b, type: 3}
       propertyPath: m_RootOrder
