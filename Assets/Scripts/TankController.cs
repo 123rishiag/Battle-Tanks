@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TankSpawner;
 
 public class TankController
 {
@@ -29,6 +30,15 @@ public class TankController
         Vector3 vector = new Vector3(0f, rotate * rotateSpeed, 0f);
         Quaternion deltaRotation = Quaternion.Euler(vector * Time.deltaTime);
         rb.MoveRotation(rb.rotation * deltaRotation);
+    }
+
+    public void Shoot()
+    {
+        GameObject spawnerObject = GameObject.Find("BulletSpawner");
+        BulletSpawner bulletSpawner = spawnerObject.GetComponent<BulletSpawner>();
+
+        Transform firePoint = tankView.transform.Find("FirePoint");
+        bulletSpawner.FireBullet(BulletTypes.Normal, firePoint);
     }
 
     public TankModel GetTankModel()

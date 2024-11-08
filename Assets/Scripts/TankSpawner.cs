@@ -24,21 +24,20 @@ public class TankSpawner : MonoBehaviour
     {
         Tank currentTank;
 
-        if (_tankType == TankTypes.GreenTank)
+        switch (_tankType)
         {
-            currentTank = tankList[0];
-        }
-        else if (_tankType == TankTypes.BlueTank)
-        {
-            currentTank = tankList[1];
-        }
-        else if (_tankType == TankTypes.RedTank)
-        {
-            currentTank = tankList[2];
-        }
-        else
-        {
-            currentTank = tankList[0];
+            case TankTypes.GreenTank:
+                currentTank = tankList[0];
+                break;
+            case TankTypes.BlueTank:
+                currentTank = tankList[1];
+                break;
+            case TankTypes.RedTank:
+                currentTank = tankList[2];
+                break;
+            default:
+                currentTank = tankList[0];
+                break;
         }
 
         TankModel tankModel = new TankModel(currentTank.movementSpeed * increaseFactor,

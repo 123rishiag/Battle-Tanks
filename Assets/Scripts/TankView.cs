@@ -8,6 +8,7 @@ public class TankView : MonoBehaviour
 
     private float movement;
     private float rotation;
+    private bool shoot;
 
     public Rigidbody rb;
 
@@ -35,12 +36,18 @@ public class TankView : MonoBehaviour
         {
             tankController.Rotate(rotation, tankController.GetTankModel().rotationSpeed);
         }
+
+        if(shoot)
+        {
+            tankController.Shoot();
+        }
     }
 
     private void Movement()
     {
         movement = Input.GetAxis("Vertical");
         rotation = Input.GetAxis("Horizontal");
+        shoot = Input.GetMouseButtonDown(0);
     }
 
     public void SetTankController(TankController _tankController)
@@ -49,6 +56,11 @@ public class TankView : MonoBehaviour
     }
 
     public Rigidbody GetRigidbody() { return rb; }
+
+    public bool Shoot()
+    {
+        return shoot;
+    }
 
     public void ChangeColor(Material _color)
     {
