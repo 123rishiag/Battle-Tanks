@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
+    private int bulletSpeedFactor = 100;
+
     [System.Serializable]
     public class Bullet
     {
@@ -38,7 +40,7 @@ public class BulletSpawner : MonoBehaviour
                 break;
         }
 
-        BulletModel bulletModel = new BulletModel(currentBullet.bulletSpeed,
+        BulletModel bulletModel = new BulletModel(currentBullet.bulletSpeed * bulletSpeedFactor,
             currentBullet.bulletDamage, currentBullet.bulletType, currentBullet.color);
         BulletController bulletController = new BulletController(bulletModel, bulletView, _firePoint);
     }

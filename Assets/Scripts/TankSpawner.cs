@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TankSpawner : MonoBehaviour
 {
-    private int increaseFactor = 10;
+    private int tankSpeedFactor = 100;
 
     [System.Serializable]
     public class Tank
@@ -13,7 +13,9 @@ public class TankSpawner : MonoBehaviour
         public float rotationSpeed;
 
         public TankTypes tankType;
-        public Material color;
+        public Material tankColor;
+
+        public BulletTypes bulletType;
     }
 
     public List<Tank> tankList;
@@ -40,8 +42,8 @@ public class TankSpawner : MonoBehaviour
                 break;
         }
 
-        TankModel tankModel = new TankModel(currentTank.movementSpeed * increaseFactor,
-            currentTank.rotationSpeed * increaseFactor, currentTank.tankType, currentTank.color);
+        TankModel tankModel = new TankModel(currentTank.movementSpeed * tankSpeedFactor,
+            currentTank.rotationSpeed * tankSpeedFactor, currentTank.tankType, currentTank.tankColor, currentTank.bulletType);
         TankController tankController = new TankController(tankModel, tankView);
     }
 }

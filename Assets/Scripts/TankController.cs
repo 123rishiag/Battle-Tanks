@@ -17,7 +17,7 @@ public class TankController
         rb = tankView.GetRigidbody();
         tankModel.SetTankController(this);
         tankView.SetTankController(this);
-        tankView.ChangeColor(tankModel.color);
+        tankView.ChangeColor(tankModel.tankColor);
     }
 
     public void Move(float movement, float movementSpeed)
@@ -38,7 +38,7 @@ public class TankController
         BulletSpawner bulletSpawner = spawnerObject.GetComponent<BulletSpawner>();
 
         Transform firePoint = tankView.transform.Find("FirePoint");
-        bulletSpawner.FireBullet(BulletTypes.Normal, firePoint);
+        bulletSpawner.FireBullet(tankModel.bulletType, firePoint);
     }
 
     public TankModel GetTankModel()
