@@ -8,7 +8,11 @@ public class TankView : MonoBehaviour
 
     private float movement;
     private float rotation;
+    private bool aim;
     private bool shoot;
+
+    public float aimSpeed = 5f;
+    public float aimYThreshold = 0.2f;
 
     public Rigidbody rb;
 
@@ -25,7 +29,7 @@ public class TankView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        HandleInput();
 
         if(movement != 0)
         {
@@ -37,17 +41,23 @@ public class TankView : MonoBehaviour
             tankController.Rotate(rotation, tankController.GetTankModel().rotationSpeed);
         }
 
-        if(shoot)
+        if (aim)
+        {
+            tankController.Aim();
+        }
+
+        if (shoot)
         {
             tankController.Shoot();
         }
     }
 
-    private void Movement()
+    private void HandleInput()
     {
         movement = Input.GetAxis("Vertical");
         rotation = Input.GetAxis("Horizontal");
         shoot = Input.GetMouseButtonDown(0);
+        aim = Input.GetMouseButton(1);
     }
 
     public void SetTankController(TankController _tankController)
