@@ -5,6 +5,7 @@ using UnityEngine;
 public class TankSpawner : MonoBehaviour
 {
     private int increaseFactor = 10;
+
     [System.Serializable]
     public class Tank
     {
@@ -18,11 +19,6 @@ public class TankSpawner : MonoBehaviour
     public List<Tank> tankList;
 
     public TankView tankView;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     public void CreateTank(TankTypes _tankType)
     {
