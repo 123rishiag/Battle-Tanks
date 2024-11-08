@@ -380,9 +380,7 @@ MonoBehaviour:
   - {fileID: 2443131154167601638}
   - {fileID: 2443131154167601640}
   - {fileID: 2443131154167601634}
-  projectilePrefab: {fileID: 504078868641313260, guid: b398f567b4e99384bb9200b6032107fc,
-    type: 3}
-  firePoint: {fileID: 1141262437}
+  bulletSpawner: {fileID: 0}
 --- !u!54 &7226443169854249534
 Rigidbody:
   m_ObjectHideFlags: 0
