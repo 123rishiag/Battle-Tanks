@@ -6,6 +6,7 @@ public class TankModel
 {
     private TankController tankController;
 
+    public int tankHealth;
     public float movementSpeed;
     public float rotationSpeed;
 
@@ -13,15 +14,19 @@ public class TankModel
     public Material tankColor;
 
     public BulletTypes bulletType;
+    public OwnerTypes ownerType;
 
-    public TankModel(float _movementSpeed, float _rotationSpeed, TankTypes _tankType, Material _tankColor, BulletTypes _bulletType)
+    public TankModel(int _tankHealth, float _movementSpeed, float _rotationSpeed, TankTypes _tankType, 
+        Material _tankColor, BulletTypes _bulletType, OwnerTypes _ownerType)
     {
+        tankHealth = _tankHealth;
         movementSpeed = _movementSpeed;
         rotationSpeed = _rotationSpeed;
         tankType = _tankType;
         tankColor = _tankColor;
         bulletType = _bulletType;
-}
+        ownerType = _ownerType;
+    }
 
     public void SetTankController(TankController _tankController)
     {

@@ -41,7 +41,7 @@ public class TankController
         BulletSpawner bulletSpawner = spawnerObject.GetComponent<BulletSpawner>();
 
         Transform firePoint = tankView.childs[3].transform.Find("FirePoint");
-        bulletSpawner.FireBullet(tankModel.bulletType, firePoint);
+        bulletSpawner.FireBullet(tankModel.bulletType, tankModel.ownerType, firePoint);
     }
 
     public void Aim()
@@ -86,7 +86,7 @@ public class TankController
                 targetRotation, Time.deltaTime * tankView.aimSpeed);
         }
     }
-
+    
     public TankModel GetTankModel()
     {
         return tankModel;

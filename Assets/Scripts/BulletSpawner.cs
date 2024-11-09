@@ -20,7 +20,7 @@ public class BulletSpawner : MonoBehaviour
 
     public BulletView bulletView;
 
-    public void FireBullet(BulletTypes _bulletType, Transform _firePoint)
+    public void FireBullet(BulletTypes _bulletType, OwnerTypes _ownerType, Transform _firePoint)
     {
         Bullet currentBullet;
 
@@ -41,7 +41,7 @@ public class BulletSpawner : MonoBehaviour
         }
 
         BulletModel bulletModel = new BulletModel(currentBullet.bulletSpeed * bulletSpeedFactor,
-            currentBullet.bulletDamage, currentBullet.bulletType, currentBullet.color);
+            currentBullet.bulletDamage, currentBullet.bulletType, currentBullet.color, _ownerType);
         BulletController bulletController = new BulletController(bulletModel, bulletView, _firePoint);
     }
 }
