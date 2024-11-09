@@ -20,7 +20,7 @@ public class BulletView : MonoBehaviour
                 Destroy(this.gameObject);
                 break;
             case "Tank":
-                if(IsSameTankCollision(collision))
+                if(!IsSameTankCollision(collision))
                 {
                     Destroy(this.gameObject);
                     Destroy(collision.gameObject);
@@ -36,7 +36,7 @@ public class BulletView : MonoBehaviour
         TankView tankView = collision.gameObject.GetComponent<TankView>();
         if (tankView != null)
         {
-            if (bulletController.GetBulletModel().ownerType != tankView.GetTankController().GetTankModel().ownerType)
+            if (bulletController.GetBulletModel().ownerType == tankView.GetTankController().GetTankModel().ownerType)
             {
                 return true;
             }
