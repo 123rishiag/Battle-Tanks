@@ -3,4 +3,5 @@
     GreenTank,
     BlueTank,
     RedTank,
+    GreyTank,
 }

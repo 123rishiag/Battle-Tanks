@@ -2,5 +2,5 @@
 {
     Normal,
     Explosion,
-    Piercing
+    Piercing,
 }

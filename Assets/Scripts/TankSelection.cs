@@ -12,19 +12,19 @@ public class TankSelection : MonoBehaviour
     }
     public void GreenTankSelected()
     {
-        tankSpawner.CreateTank(TankTypes.GreenTank);
+        tankSpawner.CreateTank(TankTypes.GreenTank, OwnerTypes.Player);
         DisableUI();
     }
 
     public void BlueTankSelected()
     {
-        tankSpawner.CreateTank(TankTypes.BlueTank);
+        tankSpawner.CreateTank(TankTypes.BlueTank, OwnerTypes.Player);
         DisableUI();
     }
 
     public void RedTankSelected()
     {
-        tankSpawner.CreateTank(TankTypes.RedTank);
+        tankSpawner.CreateTank(TankTypes.RedTank, OwnerTypes.Player);
         DisableUI();
     }
 }

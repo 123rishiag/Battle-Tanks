@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class TankView : MonoBehaviour
 {
@@ -29,14 +30,33 @@ public class TankView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleInput();
+        if (tankController.GetTankModel().ownerType == OwnerTypes.Player)
+        {
+            HandleInput();
+            PerformActionOnInput();
+        }
+        else if (tankController.GetTankModel().ownerType == OwnerTypes.Enemy)
+        {
+            PerformActionAuto();
+        }
+    }
 
-        if(movement != 0)
+    private void HandleInput()
+    {
+        movement = Input.GetAxis("Vertical");
+        rotation = Input.GetAxis("Horizontal");
+        shoot = Input.GetMouseButtonDown(0);
+        aim = Input.GetMouseButton(1);
+    }
+
+    private void PerformActionOnInput()
+    {
+        if (movement != 0)
         {
             tankController.Move(movement, tankController.GetTankModel().movementSpeed);
         }
 
-        if(rotation != 0)
+        if (rotation != 0)
         {
             tankController.Rotate(movement, rotation, tankController.GetTankModel().rotationSpeed);
         }
@@ -52,12 +72,9 @@ public class TankView : MonoBehaviour
         }
     }
 
-    private void HandleInput()
+    private void PerformActionAuto()
     {
-        movement = Input.GetAxis("Vertical");
-        rotation = Input.GetAxis("Horizontal");
-        shoot = Input.GetMouseButtonDown(0);
-        aim = Input.GetMouseButton(1);
+
     }
 
     public void SetTankController(TankController _tankController)
@@ -80,4 +97,8 @@ public class TankView : MonoBehaviour
         }
     }
 
+    public TankController GetTankController()
+    {
+        return tankController;
+    }
 }

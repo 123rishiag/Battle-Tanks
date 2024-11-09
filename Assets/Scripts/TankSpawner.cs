@@ -9,6 +9,7 @@ public class TankSpawner : MonoBehaviour
     [System.Serializable]
     public class Tank
     {
+        public int tankHealth;
         public float movementSpeed;
         public float rotationSpeed;
 
@@ -22,7 +23,7 @@ public class TankSpawner : MonoBehaviour
 
     public TankView tankView;
 
-    public void CreateTank(TankTypes _tankType)
+    public void CreateTank(TankTypes _tankType, OwnerTypes _ownerType)
     {
         Tank currentTank;
 
@@ -37,13 +38,17 @@ public class TankSpawner : MonoBehaviour
             case TankTypes.RedTank:
                 currentTank = tankList[2];
                 break;
+            case TankTypes.GreyTank:
+                currentTank = tankList[3];
+                break;
             default:
                 currentTank = tankList[0];
                 break;
         }
 
-        TankModel tankModel = new TankModel(currentTank.movementSpeed * tankSpeedFactor,
-            currentTank.rotationSpeed * tankSpeedFactor, currentTank.tankType, currentTank.tankColor, currentTank.bulletType);
+        TankModel tankModel = new TankModel(currentTank.tankHealth, currentTank.movementSpeed * tankSpeedFactor,
+            currentTank.rotationSpeed * tankSpeedFactor, currentTank.tankType, currentTank.tankColor, 
+            currentTank.bulletType, _ownerType);
         TankController tankController = new TankController(tankModel, tankView);
     }
 }
