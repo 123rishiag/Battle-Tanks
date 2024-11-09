@@ -7,10 +7,10 @@ public class TankView : MonoBehaviour
 {
     private TankController tankController;
 
-    private float movement;
-    private float rotation;
-    private bool aim;
-    private bool shoot;
+    public float movement;
+    public float rotation;
+    public bool aim;
+    public bool shoot;
 
     public float aimSpeed = 5f;
     public float aimYThreshold = 0.2f;
@@ -22,9 +22,12 @@ public class TankView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject cam = GameObject.Find("Main Camera");
-        cam.transform.SetParent(transform);
-        cam.transform.position = new Vector3(0f, 3f, -4f);
+        if (tankController.GetTankModel().ownerType == OwnerTypes.Player)
+        {
+            GameObject cam = GameObject.Find("Main Camera");
+            cam.transform.SetParent(transform);
+            cam.transform.position = new Vector3(0f, 3f, -4f);
+        }
     }
 
     // Update is called once per frame
@@ -33,48 +36,24 @@ public class TankView : MonoBehaviour
         if (tankController.GetTankModel().ownerType == OwnerTypes.Player)
         {
             HandleInput();
-            PerformActionOnInput();
         }
-        else if (tankController.GetTankModel().ownerType == OwnerTypes.Enemy)
-        {
-            PerformActionAuto();
-        }
+        PerformAction();
     }
 
     private void HandleInput()
     {
         movement = Input.GetAxis("Vertical");
         rotation = Input.GetAxis("Horizontal");
-        shoot = Input.GetMouseButtonDown(0);
         aim = Input.GetMouseButton(1);
+        shoot = Input.GetMouseButtonDown(0);
     }
 
-    private void PerformActionOnInput()
+    private void PerformAction()
     {
-        if (movement != 0)
-        {
-            tankController.Move(movement, tankController.GetTankModel().movementSpeed);
-        }
-
-        if (rotation != 0)
-        {
-            tankController.Rotate(movement, rotation, tankController.GetTankModel().rotationSpeed);
-        }
-
-        if (aim)
-        {
-            tankController.Aim();
-        }
-
-        if (shoot)
-        {
-            tankController.Shoot();
-        }
-    }
-
-    private void PerformActionAuto()
-    {
-
+        tankController.Move();
+        tankController.Rotate();
+        tankController.Aim();
+        tankController.Shoot();
     }
 
     public void SetTankController(TankController _tankController)
