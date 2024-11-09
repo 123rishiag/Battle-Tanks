@@ -25,9 +25,12 @@ public class TankController
         rb.velocity = tankView.transform.forward * _movement * _movementSpeed * Time.deltaTime;
     }
 
-    public void Rotate(float _rotate, float _rotateSpeed)
+    public void Rotate(float _movement, float _rotate, float _rotateSpeed)
     {
-        Vector3 vector = new Vector3(0f, _rotate * _rotateSpeed, 0f);
+        // Reverse rotation direction if moving backwards
+        float rotationMultiplier = (_movement < 0) ? -1 : 1;
+
+        Vector3 vector = new Vector3(0f, _rotate * _rotateSpeed * rotationMultiplier, 0f);
         Quaternion deltaRotation = Quaternion.Euler(vector * Time.deltaTime);
         rb.MoveRotation(rb.rotation * deltaRotation);
     }

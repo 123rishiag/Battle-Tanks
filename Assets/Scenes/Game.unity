@@ -152,17 +152,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tankList:
   - movementSpeed: 30
-    rotationSpeed: 10
+    rotationSpeed: 3
     tankType: 0
     tankColor: {fileID: 2100000, guid: b4d1e2e592cd5ed459329dc52de6b865, type: 2}
     bulletType: 1
   - movementSpeed: 25
-    rotationSpeed: 6
+    rotationSpeed: 2
     tankType: 1
     tankColor: {fileID: 2100000, guid: ff21ff0ea9b18924bb1fdfbb0e58f5cb, type: 2}
     bulletType: 0
   - movementSpeed: 40
-    rotationSpeed: 12
+    rotationSpeed: 4
     tankType: 2
     tankColor: {fileID: 2100000, guid: 463052f3f7389124f9e7b34b0b931d0d, type: 2}
     bulletType: 2
