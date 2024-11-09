@@ -25,30 +25,38 @@ public class TankSpawner : MonoBehaviour
 
     public void CreateTank(TankTypes _tankType, OwnerTypes _ownerType)
     {
-        Tank currentTank;
+        Tank playerTank;
+        Tank enemyTank;
 
         switch (_tankType)
         {
             case TankTypes.GreenTank:
-                currentTank = tankList[0];
+                playerTank = tankList[0];
+                enemyTank = tankList[3];
                 break;
             case TankTypes.BlueTank:
-                currentTank = tankList[1];
+                playerTank = tankList[1];
+                enemyTank = tankList[3];
                 break;
             case TankTypes.RedTank:
-                currentTank = tankList[2];
-                break;
-            case TankTypes.GreyTank:
-                currentTank = tankList[3];
+                playerTank = tankList[2];
+                enemyTank = tankList[3];
                 break;
             default:
-                currentTank = tankList[0];
+                playerTank = tankList[0];
+                enemyTank = tankList[3];
                 break;
         }
 
-        TankModel tankModel = new TankModel(currentTank.tankHealth, currentTank.movementSpeed * tankSpeedFactor,
-            currentTank.rotationSpeed * tankSpeedFactor, currentTank.tankType, currentTank.tankColor, 
-            currentTank.bulletType, _ownerType);
-        TankController tankController = new TankController(tankModel, tankView);
+        TankModel playerTankModel = new TankModel(playerTank.tankHealth, playerTank.movementSpeed * tankSpeedFactor,
+            playerTank.rotationSpeed * tankSpeedFactor, playerTank.tankType, playerTank.tankColor, 
+            playerTank.bulletType, _ownerType);
+        TankController playerTankController = new PlayerTankController(playerTankModel, tankView);
+
+        TankModel enemyTankModel = new TankModel(enemyTank.tankHealth, enemyTank.movementSpeed * tankSpeedFactor,
+            enemyTank.rotationSpeed * tankSpeedFactor, enemyTank.tankType, enemyTank.tankColor,
+            enemyTank.bulletType, OwnerTypes.Enemy);
+        TankController enemyTankController = new EnemyTankController(enemyTankModel, tankView,
+            playerTankController.GetTankView().gameObject.transform);
     }
 }

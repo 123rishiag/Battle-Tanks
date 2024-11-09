@@ -27,6 +27,7 @@ public class BulletView : MonoBehaviour
                 }
                 break;
             default:
+                Destroy(this.gameObject);
                 break;
         }
     }

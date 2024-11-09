@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using static TankSpawner;
 
-public class TankController
+public abstract class TankController
 {
-    private TankModel tankModel;
-    private TankView tankView;
+    protected TankModel tankModel;
+    protected TankView tankView;
 
     private Rigidbody rb;
 
@@ -20,75 +20,66 @@ public class TankController
         tankView.ChangeColor(tankModel.tankColor);
     }
 
-    public void Move(float _movement, float _movementSpeed)
+    public abstract void Move();
+    protected void MoveInDirection(Vector3 _direction)
     {
-        rb.velocity = tankView.transform.forward * _movement * _movementSpeed * Time.deltaTime;
+        // Normalize the direction to ensure consistent speed
+        Vector3 normalizedDirection = _direction.normalized;
+
+        // Move in the given direction
+        rb.velocity = normalizedDirection * tankModel.movementSpeed * Time.deltaTime;
     }
 
-    public void Rotate(float _movement, float _rotate, float _rotateSpeed)
+    public abstract void Rotate();
+    protected void RotateTowardsDirection(Vector3 _direction)
     {
-        // Reverse rotation direction if moving backwards
-        float rotationMultiplier = (_movement < 0) ? -1 : 1;
+        float rotationMultiplier = (tankView.movement < 0) ? -1 : 1;
 
-        Vector3 vector = new Vector3(0f, _rotate * _rotateSpeed * rotationMultiplier, 0f);
-        Quaternion deltaRotation = Quaternion.Euler(vector * Time.deltaTime);
-        rb.MoveRotation(rb.rotation * deltaRotation);
+        // Determine the target rotation based on the given direction
+        Quaternion targetRotation = Quaternion.Euler(_direction * tankModel.rotationSpeed * rotationMultiplier * Time.deltaTime);
+
+        // Smoothly rotate towards the target direction
+        rb.MoveRotation(rb.rotation * targetRotation);
     }
 
-    public void Shoot()
+    public abstract void Aim();
+    protected virtual void AimTowardsTarget(Vector3 _targetPoint)
     {
+        // Get the turret and fire point transforms
+        Transform turretTransform = tankView.childs[3].transform;
+
+        // Calculate the direction to the target point from the tank's aiming point
+        Vector3 aimDirection = (_targetPoint - turretTransform.position).normalized;
+
+        // Clamp the Y value to control aiming within a threshold
+        aimDirection.y = Mathf.Clamp(aimDirection.y, -tankView.aimYThreshold, tankView.aimYThreshold);
+
+        // Smoothly rotate the turret towards the target
+        Quaternion targetRotation = Quaternion.LookRotation(aimDirection);
+        turretTransform.rotation = Quaternion.Slerp(turretTransform.rotation, targetRotation, Time.deltaTime * tankView.aimSpeed);
+    }
+
+    public abstract void Shoot();
+    protected virtual void ShootTowardsTarget()
+    {
+        // Locate the BulletSpawner
         GameObject spawnerObject = GameObject.Find("BulletSpawner");
         BulletSpawner bulletSpawner = spawnerObject.GetComponent<BulletSpawner>();
 
+        // Find the FirePoint on the tank
         Transform firePoint = tankView.childs[3].transform.Find("FirePoint");
+
+        // Fire the bullet with specified bullet type and owner type
         bulletSpawner.FireBullet(tankModel.bulletType, tankModel.ownerType, firePoint);
     }
 
-    public void Aim()
-    {
-        // Get the mouse position in screen space
-        Vector3 mousePosition = Input.mousePosition;
-
-        // Convert mouse position to a world ray from the camera
-        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-
-        // Use a raycast to detect objects or determine a point in 3D space to aim at
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            // Get the point where the ray intersects with a collider in the scene
-            Vector3 targetPoint = hit.point;
-
-            // Get the Turret and FirePoint Transforms
-            Transform turretTransform = tankView.childs[3].transform;
-
-            // Calculate the direction to the target point from the tank's aiming point
-            Vector3 aimDirection = (targetPoint - turretTransform.position);
-
-            // Y-Axis Threshold (e.g., do not rotate beyond a certain Y direction value)
-            if (aimDirection.y > tankView.aimYThreshold)
-            {
-                aimDirection.y = tankView.aimYThreshold; // Clamp the Y value to the threshold
-            }
-            else if (aimDirection.y < -tankView.aimYThreshold)
-            {
-                aimDirection.y = -tankView.aimYThreshold; // Clamp the Y value for downward aiming
-            }
-
-            // Re-normalize the aim direction after clamping
-            aimDirection.Normalize();
-
-            // Optionally rotate the child's transform to face the target
-            Quaternion targetRotation = Quaternion.LookRotation(aimDirection);
-
-            tankView.childs[3].transform.rotation = Quaternion.Slerp(turretTransform.rotation, 
-                targetRotation, Time.deltaTime * tankView.aimSpeed);
-        }
-    }
-    
     public TankModel GetTankModel()
     {
         return tankModel;
+    }
+
+    public TankView GetTankView()
+    {
+        return tankView;
     }
 }
