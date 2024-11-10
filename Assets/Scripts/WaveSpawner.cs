@@ -66,4 +66,19 @@ public class WaveSpawner : MonoBehaviour
     {
         return waveList.Count == currentWaveIndex;
     }
+
+    public int GetCurrentWave()
+    {
+        return currentWaveIndex + 1;
+    }
+
+    public int GetTotalWave()
+    {
+        return waveList.Count;
+    }
+
+    public int GetEnemyLeft()
+    {
+        return activeTanks.Count;
+    }
 }
