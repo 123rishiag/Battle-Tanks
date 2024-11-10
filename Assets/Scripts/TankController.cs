@@ -51,12 +51,15 @@ public abstract class TankController
         // Calculate the direction to the target point from the tank's aiming point
         Vector3 aimDirection = (_targetPoint - turretTransform.position).normalized;
 
-        // Clamp the Y value to control aiming within a threshold
-        aimDirection.y = Mathf.Clamp(aimDirection.y, -tankView.aimYThreshold, tankView.aimYThreshold);
-
-        // Smoothly rotate the turret towards the target
+        // Smoothly rotate the turret towards the target without changing the X-axis rotation
         Quaternion targetRotation = Quaternion.LookRotation(aimDirection);
-        turretTransform.rotation = Quaternion.Slerp(turretTransform.rotation, targetRotation, Time.deltaTime * tankView.aimSpeed);
+        Vector3 targetEulerAngles = targetRotation.eulerAngles;
+
+        // Preserve the current X-axis rotation of the turret
+        targetEulerAngles.x = turretTransform.rotation.eulerAngles.x;
+
+        // Apply the modified rotation
+        turretTransform.rotation = Quaternion.Slerp(turretTransform.rotation, Quaternion.Euler(targetEulerAngles), Time.deltaTime * tankView.aimSpeed);
     }
 
     public abstract void Shoot();

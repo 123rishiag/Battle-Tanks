@@ -7,13 +7,16 @@ public class TankView : MonoBehaviour
 {
     private TankController tankController;
 
+    [HideInInspector]
     public float movement;
+    [HideInInspector]
     public float rotation;
+    [HideInInspector]
     public bool aim;
+    [HideInInspector]
     public bool shoot;
 
     public float aimSpeed = 5f;
-    public float aimYThreshold = 0.2f;
 
     public Rigidbody rb;
 
