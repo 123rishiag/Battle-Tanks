@@ -93,4 +93,15 @@ public abstract class TankController
     {
         return tankView;
     }
+
+    public void TakeDamage(int _damage)
+    {
+        tankModel.currentTankHealth -= _damage;
+        if(tankModel.currentTankHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public abstract void Die();
 }

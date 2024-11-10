@@ -22,11 +22,7 @@ public class BulletView : MonoBehaviour
                 Destroy(this.gameObject);
                 break;
             case "Tank":
-                if(!IsSameTankCollision(collision))
-                {
-                    Destroy(this.gameObject);
-                    //Destroy(collision.gameObject);
-                }
+                ProcessTankCollision(collision);
                 break;
             default:
                 Destroy(this.gameObject);
@@ -34,17 +30,17 @@ public class BulletView : MonoBehaviour
         }
     }
 
-    private bool IsSameTankCollision(Collision collision)
+    private void ProcessTankCollision(Collision collision)
     {
         TankView tankView = collision.gameObject.GetComponent<TankView>();
         if (tankView != null)
         {
-            if (bulletController.GetBulletModel().ownerType == tankView.GetTankController().GetTankModel().ownerType)
+            if (bulletController.GetBulletModel().ownerType != tankView.GetTankController().GetTankModel().ownerType)
             {
-                return true;
+                Destroy(this.gameObject);
+                tankView.GetTankController().TakeDamage(bulletController.GetBulletModel().fireDamage);
             }
         }
-        return false;
     }
 
     public void ChangeColor(Material _color)

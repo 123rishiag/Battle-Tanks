@@ -7,14 +7,14 @@ public class BulletModel
     private BulletController bulletController;
 
     public float fireSpeed;
-    public float fireDamage;
+    public int fireDamage;
 
     public BulletTypes bulletType;
     public Material bulletColor;
 
     public OwnerTypes ownerType;
 
-    public BulletModel(float _fireSpeed, float _fireDamage, BulletTypes _bulletType, Material _bulletColor, OwnerTypes _ownerType)
+    public BulletModel(float _fireSpeed, int _fireDamage, BulletTypes _bulletType, Material _bulletColor, OwnerTypes _ownerType)
     {
         fireSpeed = _fireSpeed;
         fireDamage = _fireDamage;

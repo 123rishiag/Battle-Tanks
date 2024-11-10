@@ -10,7 +10,7 @@ public class BulletSpawner : MonoBehaviour
     public class Bullet
     {
         public float bulletSpeed;
-        public float bulletDamage;
+        public int bulletDamage;
 
         public BulletTypes bulletType;
         public Material color;
