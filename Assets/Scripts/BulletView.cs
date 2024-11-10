@@ -23,7 +23,7 @@ public class BulletView : MonoBehaviour
                 if(!IsSameTankCollision(collision))
                 {
                     Destroy(this.gameObject);
-                    Destroy(collision.gameObject);
+                    //Destroy(collision.gameObject);
                 }
                 break;
             default:

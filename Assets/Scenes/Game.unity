@@ -170,7 +170,7 @@ MonoBehaviour:
     tankColor: {fileID: 2100000, guid: 463052f3f7389124f9e7b34b0b931d0d, type: 2}
     bulletType: 2
   - tankHealth: 20
-    movementSpeed: 40
+    movementSpeed: 15
     rotationSpeed: 4
     tankType: 3
     tankColor: {fileID: 2100000, guid: c4c5f95d06932564c8672b4bafeb1b28, type: 2}
@@ -239,11 +239,11 @@ MonoBehaviour:
     bulletDamage: 20
     bulletType: 0
     color: {fileID: 2100000, guid: b3a1f2f69b4c3a84cba5446e31e87c20, type: 2}
-  - bulletSpeed: 70
+  - bulletSpeed: 60
     bulletDamage: 30
     bulletType: 1
     color: {fileID: 2100000, guid: 6221f2fbc7212d94cb9c069ee262d824, type: 2}
-  - bulletSpeed: 100
+  - bulletSpeed: 70
     bulletDamage: 40
     bulletType: 2
     color: {fileID: 2100000, guid: e7df269b1d6121e4787b2f27aab18dbe, type: 2}
