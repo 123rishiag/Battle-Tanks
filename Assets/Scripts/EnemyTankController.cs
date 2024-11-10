@@ -5,9 +5,6 @@ using UnityEngine;
 public class EnemyTankController : TankController
 {
     private Transform playerTransform;
-
-    private float thresholdDistance = 15.0f;
-    private float shootInterval = 2.0f;
     private float lastShootTime;
 
     public EnemyTankController(TankModel _tankModel, TankView _tankView, Transform _playerTransform) : base(_tankModel, _tankView)
@@ -18,7 +15,7 @@ public class EnemyTankController : TankController
     public override void Move()
     {
         Vector3 moveDirection = playerTransform.position - tankView.transform.position;
-        if (Vector3.Distance(playerTransform.position, tankView.transform.position) > thresholdDistance)
+        if (Vector3.Distance(playerTransform.position, tankView.transform.position) > tankView.enemyThresholdDistance)
         {
             MoveInDirection(moveDirection);
         }
@@ -38,7 +35,7 @@ public class EnemyTankController : TankController
     public override void Shoot()
     {
         // Automatically shoot at intervals
-        if (Time.time - lastShootTime >= shootInterval)
+        if (Time.time - lastShootTime >= tankView.enemyShootInterval)
         {
             ShootTowardsTarget();
             lastShootTime = Time.time;

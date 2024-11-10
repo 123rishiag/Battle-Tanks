@@ -14,6 +14,14 @@ public abstract class TankController
     {
         tankModel = _tankModel;
         tankView = GameObject.Instantiate<TankView>(_tankView);
+
+        Vector3 randomPosition = new Vector3(
+            UnityEngine.Random.Range(-tankView.spawnRadius, tankView.spawnRadius),
+            0f, // Y-axis (assuming ground level)
+            UnityEngine.Random.Range(-tankView.spawnRadius, tankView.spawnRadius)
+        );
+        tankView.transform.position = randomPosition;
+
         rb = tankView.GetRigidbody();
         tankModel.SetTankController(this);
         tankView.SetTankController(this);
