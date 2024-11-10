@@ -42,8 +42,6 @@ public class WaveSpawner : MonoBehaviour
 
         activeTanks.Clear(); // Clear previous tanks before spawning a new wave
 
-        Debug.Log("Wave Number: " + (currentWaveIndex + 1));
-
         Wave currentWave = waveList[_waveNumber];
         for (int i = 0; i < currentWave.tankCount; i++)
         {

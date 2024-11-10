@@ -1,5 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using TMPro;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,13 +9,22 @@ public class GameManager : MonoBehaviour
 
     public WaveSpawner waveSpawner;
 
+    public GameObject gameOverMenu;
+    private TMP_Text gameOverText;
+
+    private void Start()
+    {
+        if (gameOverMenu != null)
+        {
+            gameOverText = gameOverMenu.GetComponentInChildren<TMP_Text>();
+        }
+        gameOverMenu.SetActive(false);
+    }
+
     private void Update()
     {
-        IsPlayerAlive();
-        if(waveSpawner.AreAllWavesFinished())
-        {
-            Debug.Log("Game Won!");
-        }
+        GameWon();
+        GameLost();
     }
 
     public void SetTankController(TankController _tankController)
@@ -23,19 +33,38 @@ public class GameManager : MonoBehaviour
         waveSpawner.StartSpawningWaves();
     }
 
-    private bool IsPlayerAlive()
+    private void GameWon()
     {
-        if(playercontroller != null) 
+        if (waveSpawner.AreAllWavesFinished())
         {
-            if(playercontroller.IsAlive())
-            {
-                return true; 
-            }
-            else
-            {
-                Debug.Log("Game Lost!");
-            }
+            ShowGameOver("Game Won!");
         }
-        return false;
+    }
+
+    private void GameLost()
+    {
+        if (playercontroller != null && !playercontroller.IsAlive())
+        {
+            ShowGameOver("Game Lost!");
+        }
+    }
+
+    private void ShowGameOver(string message)
+    {
+        if (gameOverMenu != null && gameOverText != null)
+        {
+            gameOverMenu.SetActive(true);
+            gameOverText.text = message;
+            StartCoroutine(HideGameOverMenuAfterDelay(5f));
+        }
+    }
+
+    private IEnumerator HideGameOverMenuAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (gameOverText != null)
+        {
+            gameOverText.text = "";
+        }
     }
 }
