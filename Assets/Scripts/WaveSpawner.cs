@@ -15,6 +15,7 @@ public class WaveSpawner : MonoBehaviour
     }
 
     public List<Wave> waveList;
+    private List<TankController> activeTanks = new List<TankController>();
 
     public void StartSpawningWaves()
     {
@@ -39,18 +40,32 @@ public class WaveSpawner : MonoBehaviour
             return;
         }
 
+        activeTanks.Clear(); // Clear previous tanks before spawning a new wave
+
+        Debug.Log("Wave Number: " + (currentWaveIndex + 1));
+
         Wave currentWave = waveList[_waveNumber];
         for (int i = 0; i < currentWave.tankCount; i++)
         {
-            tankSpawner.CreateTank(TankTypes.GreyTank, OwnerTypes.Enemy);
+            TankController spawnedTank = tankSpawner.CreateTank(TankTypes.GreyTank, OwnerTypes.Enemy);
+            if (spawnedTank != null)
+            {
+                activeTanks.Add(spawnedTank);
+            }
         }
     }
 
     private bool IsWaveComplete()
     {
-        // Implement your logic to determine if the wave is complete.
-        // For example, check if all tanks are destroyed.
-        // This is just a placeholder and should be replaced with your actual completion condition.
-        return false;
+        // Filter out any tanks that have been destroyed
+        activeTanks.RemoveAll(tankController => (tankController == null || (!tankController.IsAlive())));
+
+        // Check if there are any active tanks left
+        return activeTanks.Count == 0;
+    }
+
+    public bool AreAllWavesFinished()
+    {
+        return waveList.Count == currentWaveIndex;
     }
 }

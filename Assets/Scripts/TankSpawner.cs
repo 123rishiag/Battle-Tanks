@@ -7,8 +7,6 @@ public class TankSpawner : MonoBehaviour
     private int tankSpeedFactor = 100;
     private Transform playerTransform;
 
-    public WaveSpawner waveSpawner;
-
     [System.Serializable]
     public class Tank
     {
@@ -74,7 +72,6 @@ public class TankSpawner : MonoBehaviour
     {
         TankController tankController = new PlayerTankController(_tankModel, _tankView);
         playerTransform = tankController.GetTankView().gameObject.transform;
-        waveSpawner.StartSpawningWaves();
         return tankController;
     }
 
