@@ -104,4 +104,6 @@ public abstract class TankController
     }
 
     public abstract void Die();
+
+    public bool IsAlive() => tankModel.currentTankHealth > 0;
 }

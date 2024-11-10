@@ -152,9 +152,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tankSpawner: {fileID: 310589866}
   waveList:
+  - tankCount: 1
+  - tankCount: 2
   - tankCount: 3
-  - tankCount: 4
-  - tankCount: 5
 --- !u!4 &221457879
 Transform:
   m_ObjectHideFlags: 0
@@ -163,12 +163,56 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221457877}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0069007874, y: 1.2559222, z: -0.06900692}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &261576790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 261576791}
+  - component: {fileID: 261576792}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &261576791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261576790}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &261576792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261576790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd3f58f4c3ed89498674fff2b0dd86d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveSpawner: {fileID: 221457878}
 --- !u!1 &310589865
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,7 +242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32092901a9b8a5444b61d48a371d6bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveSpawner: {fileID: 221457878}
   tankList:
   - tankHealth: 1000
     movementSpeed: 30
@@ -206,7 +249,7 @@ MonoBehaviour:
     tankType: 0
     tankColor: {fileID: 2100000, guid: b4d1e2e592cd5ed459329dc52de6b865, type: 2}
     bulletType: 1
-  - tankHealth: 1000
+  - tankHealth: 100
     movementSpeed: 25
     rotationSpeed: 2
     tankType: 1
@@ -621,6 +664,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LobbyUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5044901157912153469, guid: b02382b9e205b7f4d89a5c94e08a2724,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 261576792}
     - target: {fileID: 5044901157912153469, guid: b02382b9e205b7f4d89a5c94e08a2724,
         type: 3}
       propertyPath: tankSpawner

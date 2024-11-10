@@ -5,6 +5,7 @@ using UnityEngine;
 public class TankSelection : MonoBehaviour
 {
     public TankSpawner tankSpawner;
+    public GameManager gameManager;
 
     private void DisableUI()
     {
@@ -12,19 +13,19 @@ public class TankSelection : MonoBehaviour
     }
     public void GreenTankSelected()
     {
-        tankSpawner.CreateTank(TankTypes.GreenTank, OwnerTypes.Player);
+        gameManager.SetTankController(tankSpawner.CreateTank(TankTypes.GreenTank, OwnerTypes.Player));
         DisableUI();
     }
 
     public void BlueTankSelected()
     {
-        tankSpawner.CreateTank(TankTypes.BlueTank, OwnerTypes.Player);
+        gameManager.SetTankController(tankSpawner.CreateTank(TankTypes.BlueTank, OwnerTypes.Player));
         DisableUI();
     }
 
     public void RedTankSelected()
     {
-        tankSpawner.CreateTank(TankTypes.RedTank, OwnerTypes.Player);
+        gameManager.SetTankController(tankSpawner.CreateTank(TankTypes.RedTank, OwnerTypes.Player));
         DisableUI();
     }
 }

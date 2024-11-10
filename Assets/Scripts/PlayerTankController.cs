@@ -50,7 +50,6 @@ public class PlayerTankController : TankController
 
     public override void Die()
     {
-        Debug.Log("Player Dead!");
         tankModel.currentTankHealth = 0;
     }
 }
