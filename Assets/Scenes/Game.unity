@@ -285,15 +285,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletList:
   - bulletSpeed: 50
-    bulletDamage: 20
+    bulletDamage: 30
     bulletType: 0
     color: {fileID: 2100000, guid: b3a1f2f69b4c3a84cba5446e31e87c20, type: 2}
   - bulletSpeed: 60
-    bulletDamage: 30
+    bulletDamage: 40
     bulletType: 1
     color: {fileID: 2100000, guid: 6221f2fbc7212d94cb9c069ee262d824, type: 2}
   - bulletSpeed: 70
-    bulletDamage: 40
+    bulletDamage: 50
     bulletType: 2
     color: {fileID: 2100000, guid: e7df269b1d6121e4787b2f27aab18dbe, type: 2}
   bulletView: {fileID: -6356920786376154320, guid: 661ff1b3b2adb71479226e5bbc7933dd,

@@ -7,6 +7,7 @@ public class TankModel
     private TankController tankController;
 
     public int tankHealth;
+    public int currentTankHealth;
     public float movementSpeed;
     public float rotationSpeed;
 
@@ -20,6 +21,7 @@ public class TankModel
         Material _tankColor, BulletTypes _bulletType, OwnerTypes _ownerType)
     {
         tankHealth = _tankHealth;
+        currentTankHealth = _tankHealth;
         movementSpeed = _movementSpeed;
         rotationSpeed = _rotationSpeed;
         tankType = _tankType;

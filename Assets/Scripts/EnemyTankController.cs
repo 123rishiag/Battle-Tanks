@@ -41,4 +41,9 @@ public class EnemyTankController : TankController
             lastShootTime = Time.time;
         }
     }
+
+    public override void Die()
+    {
+        GameObject.Destroy(tankView.gameObject);
+    }
 }

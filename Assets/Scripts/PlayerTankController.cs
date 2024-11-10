@@ -47,4 +47,10 @@ public class PlayerTankController : TankController
             ShootTowardsTarget();
         }
     }
+
+    public override void Die()
+    {
+        Debug.Log("Player Dead!");
+        tankModel.currentTankHealth = 0;
+    }
 }
