@@ -6,7 +6,7 @@ public class EnemyTankController : TankController
 {
     private Transform playerTransform;
 
-    private float thresholdDistance = 10.0f;
+    private float thresholdDistance = 15.0f;
     private float shootInterval = 2.0f;
     private float lastShootTime;
 

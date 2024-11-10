@@ -5,6 +5,9 @@ using UnityEngine;
 public class TankSpawner : MonoBehaviour
 {
     private int tankSpeedFactor = 100;
+    private Transform playerTransform;
+
+    public WaveSpawner waveSpawner;
 
     [System.Serializable]
     public class Tank
@@ -23,40 +26,61 @@ public class TankSpawner : MonoBehaviour
 
     public TankView tankView;
 
-    public void CreateTank(TankTypes _tankType, OwnerTypes _ownerType)
+    public TankController CreateTank(TankTypes _tankType, OwnerTypes _ownerType)
     {
-        Tank playerTank;
-        Tank enemyTank;
+        Tank currentTank;
 
         switch (_tankType)
         {
             case TankTypes.GreenTank:
-                playerTank = tankList[0];
-                enemyTank = tankList[3];
+                currentTank = tankList[0];
                 break;
             case TankTypes.BlueTank:
-                playerTank = tankList[1];
-                enemyTank = tankList[3];
+                currentTank = tankList[1];
                 break;
             case TankTypes.RedTank:
-                playerTank = tankList[2];
-                enemyTank = tankList[3];
+                currentTank = tankList[2];
+                break;
+            case TankTypes.GreyTank:
+                currentTank = tankList[3];
                 break;
             default:
-                playerTank = tankList[0];
-                enemyTank = tankList[3];
+                currentTank = tankList[0];
                 break;
         }
 
-        TankModel playerTankModel = new TankModel(playerTank.tankHealth, playerTank.movementSpeed * tankSpeedFactor,
-            playerTank.rotationSpeed * tankSpeedFactor, playerTank.tankType, playerTank.tankColor, 
-            playerTank.bulletType, _ownerType);
-        TankController playerTankController = new PlayerTankController(playerTankModel, tankView);
+        TankModel tankModel = new TankModel(currentTank.tankHealth, currentTank.movementSpeed * tankSpeedFactor,
+            currentTank.rotationSpeed * tankSpeedFactor, currentTank.tankType, currentTank.tankColor,
+            currentTank.bulletType, _ownerType);
 
-        TankModel enemyTankModel = new TankModel(enemyTank.tankHealth, enemyTank.movementSpeed * tankSpeedFactor,
-            enemyTank.rotationSpeed * tankSpeedFactor, enemyTank.tankType, enemyTank.tankColor,
-            enemyTank.bulletType, OwnerTypes.Enemy);
-        TankController enemyTankController = new EnemyTankController(enemyTankModel, tankView,
-            playerTankController.GetTankView().gameObject.transform);
+        TankController tankController;
+        switch(_ownerType)
+        {
+            case OwnerTypes.Player:
+                tankController = CreatePlayerTank(tankModel, tankView);
+                break;
+            case OwnerTypes.Enemy:
+                tankController = CreateEnemyTank(tankModel, tankView);
+                break;
+            default:
+                tankController = CreatePlayerTank(tankModel, tankView);
+                break;
+        }
+
+        return tankController;
+    }
+
+    private TankController CreatePlayerTank(TankModel _tankModel, TankView _tankView)
+    {
+        TankController tankController = new PlayerTankController(_tankModel, _tankView);
+        playerTransform = tankController.GetTankView().gameObject.transform;
+        waveSpawner.StartSpawningWaves();
+        return tankController;
+    }
+
+    private TankController CreateEnemyTank(TankModel _tankModel, TankView _tankView)
+    {
+        TankController tankController = new EnemyTankController(_tankModel, _tankView, playerTransform);
+        return tankController;
     }
 }

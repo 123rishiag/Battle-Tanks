@@ -121,6 +121,54 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &221457877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 221457879}
+  - component: {fileID: 221457878}
+  m_Layer: 0
+  m_Name: WaveSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &221457878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221457877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32eab6c9171b6d04db4db4bc4bc372f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankSpawner: {fileID: 310589866}
+  waveList:
+  - tankCount: 3
+  - tankCount: 4
+  - tankCount: 5
+--- !u!4 &221457879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221457877}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0069007874, y: 1.2559222, z: -0.06900692}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &310589865
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,20 +198,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32092901a9b8a5444b61d48a371d6bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveSpawner: {fileID: 221457878}
   tankList:
-  - tankHealth: 100
+  - tankHealth: 1000
     movementSpeed: 30
     rotationSpeed: 3
     tankType: 0
     tankColor: {fileID: 2100000, guid: b4d1e2e592cd5ed459329dc52de6b865, type: 2}
     bulletType: 1
-  - tankHealth: 100
+  - tankHealth: 1000
     movementSpeed: 25
     rotationSpeed: 2
     tankType: 1
     tankColor: {fileID: 2100000, guid: ff21ff0ea9b18924bb1fdfbb0e58f5cb, type: 2}
     bulletType: 0
-  - tankHealth: 100
+  - tankHealth: 1000
     movementSpeed: 40
     rotationSpeed: 4
     tankType: 2
