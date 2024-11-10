@@ -125,3 +125,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 6427729137854658613}
   bulletRenderer: {fileID: 4981276594662089203}
+  bulletLifetime: 10

@@ -80,8 +80,8 @@ MonoBehaviour:
   rotation: 0
   aim: 0
   shoot: 0
+  spawnRadius: 20
   aimSpeed: 5
-  aimYThreshold: 0.001
   rb: {fileID: 7226443169854249534}
   childs:
   - {fileID: 2443131154167601632}

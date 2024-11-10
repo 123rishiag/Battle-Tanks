@@ -9,6 +9,8 @@ public class BulletView : MonoBehaviour
 
     public MeshRenderer bulletRenderer;
 
+    public float bulletLifetime = 10f;
+
     void OnCollisionEnter(Collision collision)
     {
         switch (collision.gameObject.tag)

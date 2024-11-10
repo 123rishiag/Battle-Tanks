@@ -16,6 +16,10 @@ public class TankView : MonoBehaviour
     [HideInInspector]
     public bool shoot;
 
+    public float spawnRadius = 20f;
+    public float enemyThresholdDistance = 15.0f;
+    public float enemyShootInterval = 2.0f;
+
     public float aimSpeed = 5f;
 
     public Rigidbody rb;
@@ -29,7 +33,7 @@ public class TankView : MonoBehaviour
         {
             GameObject cam = GameObject.Find("Main Camera");
             cam.transform.SetParent(transform);
-            cam.transform.position = new Vector3(0f, 3f, -4f);
+            cam.transform.localPosition = new Vector3(0f, 3f, -4f);
         }
     }
 
