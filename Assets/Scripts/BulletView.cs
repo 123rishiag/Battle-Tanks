@@ -1,4 +1,5 @@
-﻿using UnityEditor.UIElements;
+﻿using System;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class BulletView : MonoBehaviour
@@ -10,22 +11,44 @@ public class BulletView : MonoBehaviour
     public MeshRenderer bulletRenderer;
 
     public float bulletLifetime = 10f;
+    private bool hasExploded = false;
+    private float countDown;
+
+    private void Start()
+    {
+        countDown = bulletLifetime;
+    }
+
+    private void Update()
+    {
+        countDown -= Time.deltaTime;
+        if(countDown <= 0f && !hasExploded)
+        {
+            Explode();
+            hasExploded = true;
+        }    
+    }
+
+    private void Explode()
+    {
+        Instantiate(bulletController.GetBulletModel().collisionEffect, transform.position, transform.rotation);
+        Destroy(this.gameObject);
+    }
 
     void OnCollisionEnter(Collision collision)
     {
         switch (collision.gameObject.tag)
         {
             case "Environment":
-                Destroy(this.gameObject);
+                Explode();
                 break;
             case "Bullet":
-                Destroy(this.gameObject);
+                Explode();
                 break;
             case "Tank":
                 ProcessTankCollision(collision);
                 break;
             default:
-                Destroy(this.gameObject);
                 break;
         }
     }
@@ -37,8 +60,8 @@ public class BulletView : MonoBehaviour
         {
             if (bulletController.GetBulletModel().ownerType != tankView.GetTankController().GetTankModel().ownerType)
             {
-                Destroy(this.gameObject);
                 tankView.GetTankController().TakeDamage(bulletController.GetBulletModel().fireDamage);
+                Explode();
             }
         }
     }

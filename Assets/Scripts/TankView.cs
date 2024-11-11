@@ -22,8 +22,9 @@ public class TankView : MonoBehaviour
 
     public float aimSpeed = 5f;
 
-    public Rigidbody rb;
+    public GameObject tankExplosionEffect;
 
+    public Rigidbody rb;
     public MeshRenderer[] childs;
 
     // Start is called before the first frame update
@@ -45,6 +46,12 @@ public class TankView : MonoBehaviour
             HandleInput();
         }
         PerformAction();
+    }
+
+    public void Explode()
+    {
+        Instantiate(tankExplosionEffect, transform.position, transform.rotation);
+        Destroy(this.gameObject);
     }
 
     private void HandleInput()

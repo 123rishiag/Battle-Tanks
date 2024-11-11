@@ -81,7 +81,10 @@ MonoBehaviour:
   aim: 0
   shoot: 0
   spawnRadius: 20
+  enemyThresholdDistance: 15
+  enemyShootInterval: 2
   aimSpeed: 5
+  tankExplosionEffect: {fileID: 100008, guid: 06736895ea0a4ff408d25e6684dce797, type: 3}
   rb: {fileID: 7226443169854249534}
   childs:
   - {fileID: 2443131154167601632}

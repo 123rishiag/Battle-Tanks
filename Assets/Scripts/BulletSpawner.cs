@@ -13,7 +13,9 @@ public class BulletSpawner : MonoBehaviour
         public int bulletDamage;
 
         public BulletTypes bulletType;
-        public Material color;
+        public Material bulletColor;
+
+        public GameObject collisionEffect;
     }
 
     public List<Bullet> bulletList;
@@ -40,8 +42,8 @@ public class BulletSpawner : MonoBehaviour
                 break;
         }
 
-        BulletModel bulletModel = new BulletModel(currentBullet.bulletSpeed * bulletSpeedFactor,
-            currentBullet.bulletDamage, currentBullet.bulletType, currentBullet.color, _ownerType);
+        BulletModel bulletModel = new BulletModel(currentBullet.bulletSpeed * bulletSpeedFactor, currentBullet.bulletDamage, 
+            currentBullet.bulletType, currentBullet.bulletColor, currentBullet.collisionEffect, _ownerType);
         BulletController bulletController = new BulletController(bulletModel, bulletView, _firePoint);
     }
 }
