@@ -6,6 +6,8 @@ using UnityEngine.Analytics;
 public class TankView : MonoBehaviour
 {
     private TankController tankController;
+    private Camera mainCamera;
+    private Vector3 cameraPosition = new Vector3(0f, 5f, -8f);
 
     [HideInInspector]
     public float movement;
@@ -30,11 +32,11 @@ public class TankView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainCamera = Camera.main;
         if (tankController.GetTankModel().ownerType == OwnerTypes.Player)
         {
-            GameObject cam = GameObject.Find("Main Camera");
-            cam.transform.SetParent(transform);
-            cam.transform.localPosition = new Vector3(0f, 5f, -8f);
+            mainCamera.transform.SetParent(transform);
+            mainCamera.transform.localPosition = cameraPosition;
         }
     }
 
@@ -52,6 +54,30 @@ public class TankView : MonoBehaviour
     {
         Instantiate(tankExplosionEffect, transform.position, transform.rotation);
         Destroy(this.gameObject);
+    }
+
+    private IEnumerator ShakeScreen(float _duration, float _magnitude)
+    {
+        float elapsed = 0.0f;
+
+        while (elapsed < _duration)
+        {
+            float x = Random.Range(-1f, 1f) * _magnitude;
+            float y = Random.Range(-1f, 1f) * _magnitude;
+
+            mainCamera.transform.localPosition = new Vector3(x, y, cameraPosition.z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        mainCamera.transform.localPosition = cameraPosition;
+    }
+
+    public void RunShakeScreenCoroutine()
+    {
+        StartCoroutine(ShakeScreen(.15f, .4f));
     }
 
     private void HandleInput()

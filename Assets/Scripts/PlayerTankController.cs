@@ -48,8 +48,13 @@ public class PlayerTankController : TankController
         }
     }
 
-    public override void Die()
+    public override void TakeDamage(int _damage)
     {
-        tankModel.currentTankHealth = 0;
+        tankModel.currentTankHealth -= _damage;
+        tankView.RunShakeScreenCoroutine();
+        if (tankModel.currentTankHealth <= 0)
+        {
+            tankModel.currentTankHealth = 0;
+        }
     }
 }

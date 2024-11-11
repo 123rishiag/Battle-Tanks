@@ -43,8 +43,12 @@ public class EnemyTankController : TankController
         }
     }
 
-    public override void Die()
+    public override void TakeDamage(int _damage)
     {
-        tankView.Explode();
+        tankModel.currentTankHealth -= _damage;
+        if (tankModel.currentTankHealth <= 0)
+        {
+            tankView.Explode();
+        }
     }
 }
