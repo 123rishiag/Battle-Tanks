@@ -45,6 +45,6 @@ public class EnemyTankController : TankController
 
     public override void Die()
     {
-        GameObject.Destroy(tankView.gameObject);
+        tankView.Explode();
     }
 }

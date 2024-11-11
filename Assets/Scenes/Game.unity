@@ -339,15 +339,18 @@ MonoBehaviour:
   - bulletSpeed: 50
     bulletDamage: 30
     bulletType: 0
-    color: {fileID: 2100000, guid: b3a1f2f69b4c3a84cba5446e31e87c20, type: 2}
+    bulletColor: {fileID: 2100000, guid: b3a1f2f69b4c3a84cba5446e31e87c20, type: 2}
+    collisionEffect: {fileID: 100006, guid: 2e7e92bc7175b744ea40878dedfa79e4, type: 3}
   - bulletSpeed: 60
     bulletDamage: 40
     bulletType: 1
-    color: {fileID: 2100000, guid: 6221f2fbc7212d94cb9c069ee262d824, type: 2}
+    bulletColor: {fileID: 2100000, guid: 6221f2fbc7212d94cb9c069ee262d824, type: 2}
+    collisionEffect: {fileID: 100006, guid: 93485fd5fc2ccf2439cb3239186f6382, type: 3}
   - bulletSpeed: 70
     bulletDamage: 50
     bulletType: 2
-    color: {fileID: 2100000, guid: e7df269b1d6121e4787b2f27aab18dbe, type: 2}
+    bulletColor: {fileID: 2100000, guid: e7df269b1d6121e4787b2f27aab18dbe, type: 2}
+    collisionEffect: {fileID: 100014, guid: 5332791ebce075d4a9e56f4581e7fb47, type: 3}
   bulletView: {fileID: -6356920786376154320, guid: 661ff1b3b2adb71479226e5bbc7933dd,
     type: 3}
 --- !u!1001 &1088823480
@@ -797,6 +800,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LobbyUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870283614252561372, guid: b02382b9e205b7f4d89a5c94e08a2724,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5044901157912153469, guid: b02382b9e205b7f4d89a5c94e08a2724,
         type: 3}

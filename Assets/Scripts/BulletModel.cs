@@ -12,14 +12,17 @@ public class BulletModel
     public BulletTypes bulletType;
     public Material bulletColor;
 
+    public GameObject collisionEffect;
     public OwnerTypes ownerType;
 
-    public BulletModel(float _fireSpeed, int _fireDamage, BulletTypes _bulletType, Material _bulletColor, OwnerTypes _ownerType)
+    public BulletModel(float _fireSpeed, int _fireDamage, BulletTypes _bulletType, 
+        Material _bulletColor, GameObject _collisionEffect, OwnerTypes _ownerType)
     {
         fireSpeed = _fireSpeed;
         fireDamage = _fireDamage;
         bulletType = _bulletType;
         bulletColor = _bulletColor;
+        collisionEffect = _collisionEffect;
         ownerType = _ownerType;
     }
 

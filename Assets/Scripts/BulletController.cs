@@ -17,8 +17,6 @@ public class BulletController
         bulletView.ChangeColor(bulletModel.bulletColor);
 
         Fire(bulletModel.fireSpeed, _firePoint);
-
-        GameObject.Destroy(bulletView.gameObject, bulletView.bulletLifetime);
     }
 
     public void Fire(float _fireSpeed, Transform _firePoint)
