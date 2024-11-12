@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public WaveSpawner waveSpawner;
 
+    public GameObject controlsMenu;
     public GameObject gameOverMenu;
     public GameObject gameHud;
 
@@ -107,6 +108,19 @@ public class GameManager : MonoBehaviour
             // Pausing the game
             Time.timeScale = 0f;
         }
+    }
+
+    public void MainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        SoundManager.Instance.PlayEffect(SoundType.ButtonClick);
+        SoundManager.Instance.PlayMusic(SoundType.BackgroundMusic);
+    }
+
+    public void ControlsMenu()
+    {
+        SoundManager.Instance.PlayEffect(SoundType.ButtonClick);
+        controlsMenu.SetActive(true);
     }
 
     public void PauseGame()

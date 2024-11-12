@@ -31,6 +31,11 @@ public class TankSelection : MonoBehaviour
         DisableUI();
     }
 
+    public void ControlsMenu()
+    {
+        gameManager.ControlsMenu();
+    }
+
     public void QuitGame()
     {
         gameManager.QuitGame();
