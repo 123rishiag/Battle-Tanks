@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BulletModel
 {
@@ -15,7 +13,7 @@ public class BulletModel
     public GameObject collisionEffect;
     public OwnerTypes ownerType;
 
-    public BulletModel(float _fireSpeed, int _fireDamage, BulletTypes _bulletType, 
+    public BulletModel(float _fireSpeed, int _fireDamage, BulletTypes _bulletType,
         Material _bulletColor, GameObject _collisionEffect, OwnerTypes _ownerType)
     {
         fireSpeed = _fireSpeed;

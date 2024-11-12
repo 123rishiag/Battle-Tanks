@@ -53,7 +53,7 @@ public class SoundManager : MonoBehaviour
     {
         if (isMute) return;
 
-        if(soundType == currentMusic) return;
+        if (soundType == currentMusic) return;
 
         AudioClip soundClip = GetSoundClip(soundType);
         if (soundClip != null)
