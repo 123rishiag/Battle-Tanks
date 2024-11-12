@@ -30,4 +30,9 @@ public class TankSelection : MonoBehaviour
         gameManager.SetTankController(tankSpawner.CreateTank(TankTypes.RedTank, OwnerTypes.Player));
         DisableUI();
     }
+
+    public void QuitGame()
+    {
+        gameManager.QuitGame();
+    }
 }

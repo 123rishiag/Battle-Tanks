@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
         if (gameOverMenu != null)
         {
             gameOverText = gameOverMenu.GetComponentInChildren<TMP_Text>();
+            gameOverText.text = "abcd";
         }
         gameOverMenu.SetActive(false);
     }
@@ -103,9 +104,34 @@ public class GameManager : MonoBehaviour
         {
             gameOverText.text = "";
 
-            SoundManager.Instance.PlayMusic(SoundType.BackgroundMusic);
             // Pausing the game
             Time.timeScale = 0f;
         }
+    }
+
+    public void PauseGame()
+    {
+        if (Time.timeScale == 1f)
+        {
+            SoundManager.Instance.PlayEffect(SoundType.GamePause);
+            SoundManager.Instance.MuteGame(true);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            SoundManager.Instance.MuteGame(false);
+            SoundManager.Instance.PlayEffect(SoundType.GameStart);
+        }
+    }
+
+    public void QuitGame()
+    {
+        SoundManager.Instance.PlayEffect(SoundType.ButtonQuit);
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+    Application.Quit();
+#endif
     }
 }
