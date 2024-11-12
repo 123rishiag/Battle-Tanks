@@ -59,27 +59,35 @@ public class TankView : MonoBehaviour
 
     private IEnumerator ShakeScreen(float _duration, float _magnitude)
     {
+        Vector3 originalPosition = mainCamera.transform.localPosition;
         float elapsed = 0.0f;
+
+        // Variables for controlling shake behavior
+        float noiseFrequency = 10.0f;  // Controls the speed of Perlin noise oscillation
 
         while (elapsed < _duration)
         {
-            float x = Random.Range(-1f, 1f) * _magnitude;
-            float y = Random.Range(-1f, 1f) * _magnitude;
+            // Calculate decay factor to reduce magnitude over time
+            float decayFactor = Mathf.Lerp(_magnitude, 0, elapsed / _duration);
 
-            mainCamera.transform.localPosition = new Vector3(x, y, cameraPosition.z);
+            // Generate Perlin noise-based offsets
+            float x = (Mathf.PerlinNoise(Time.time * noiseFrequency, 0) * 2 - 1) * decayFactor;
+            float y = (Mathf.PerlinNoise(0, Time.time * noiseFrequency) * 2 - 1) * decayFactor;
+
+            // Apply offset to original position
+            mainCamera.transform.localPosition = new Vector3(originalPosition.x + x, originalPosition.y + y, originalPosition.z);
 
             elapsed += Time.deltaTime;
-
             yield return null;
         }
 
-        mainCamera.transform.localPosition = cameraPosition;
+        mainCamera.transform.localPosition = originalPosition;
         SoundManager.Instance.PlayEffect(SoundType.TankExplosion);
     }
 
     public void RunShakeScreenCoroutine()
     {
-        StartCoroutine(ShakeScreen(.15f, .4f));
+        StartCoroutine(ShakeScreen(1f, 1f));
     }
 
     private void HandleInput()
