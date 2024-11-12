@@ -25,8 +25,16 @@ public class EnemyTankController : TankController
 
     public override void Move()
     {
+        RaycastHit hit;
         Vector3 moveDirection = playerTransform.position - tankView.transform.position;
-        if (Vector3.Distance(playerTransform.position, tankView.transform.position) > tankView.enemyThresholdDistance)
+        Vector3 normalizedDirection = moveDirection.normalized;
+
+        if (Physics.Raycast(tankView.transform.position, normalizedDirection, out hit, tankView.enemyThresholdDistance))
+        {
+            Vector3 obstacleAvoidanceDirection = Vector3.Cross(hit.normal, Vector3.up).normalized;
+            MoveInDirection(obstacleAvoidanceDirection);
+        }
+        else
         {
             MoveInDirection(moveDirection);
         }
