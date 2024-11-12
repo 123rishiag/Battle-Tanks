@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEditor.UIElements;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BulletView : MonoBehaviour
 {
@@ -22,11 +20,11 @@ public class BulletView : MonoBehaviour
     private void Update()
     {
         countDown -= Time.deltaTime;
-        if(countDown <= 0f && !hasExploded)
+        if (countDown <= 0f && !hasExploded)
         {
             Explode();
             hasExploded = true;
-        }    
+        }
     }
 
     private void Explode()

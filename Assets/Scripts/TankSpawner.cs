@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TankSpawner : MonoBehaviour
@@ -52,7 +51,7 @@ public class TankSpawner : MonoBehaviour
             currentTank.bulletType, _ownerType);
 
         TankController tankController;
-        switch(_ownerType)
+        switch (_ownerType)
         {
             case OwnerTypes.Player:
                 tankController = CreatePlayerTank(tankModel, tankView);

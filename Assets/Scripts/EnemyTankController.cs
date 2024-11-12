@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using static TankSpawner;
+﻿using UnityEngine;
 
 public class EnemyTankController : TankController
 {
     private float lastShootTime;
 
-    public EnemyTankController(TankModel _tankModel, TankView _tankView, Transform _playerTransform) 
+    public EnemyTankController(TankModel _tankModel, TankView _tankView, Transform _playerTransform)
         : base(_tankModel, _tankView, _playerTransform) { }
 
     public override bool CheckConditionsSatisfied(Vector3 _randomPosition, out RaycastHit _hit)

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
@@ -42,7 +41,7 @@ public class BulletSpawner : MonoBehaviour
                 break;
         }
 
-        BulletModel bulletModel = new BulletModel(currentBullet.bulletSpeed * bulletSpeedFactor, currentBullet.bulletDamage, 
+        BulletModel bulletModel = new BulletModel(currentBullet.bulletSpeed * bulletSpeedFactor, currentBullet.bulletDamage,
             currentBullet.bulletType, currentBullet.bulletColor, currentBullet.collisionEffect, _ownerType);
         BulletController bulletController = new BulletController(bulletModel, bulletView, _firePoint);
     }

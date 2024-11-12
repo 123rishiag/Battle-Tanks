@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using TMPro;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -142,10 +141,6 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         SoundManager.Instance.PlayEffect(SoundType.ButtonQuit);
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-    Application.Quit();
-#endif
+        Application.Quit();
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TankModel
 {
@@ -17,7 +15,7 @@ public class TankModel
     public BulletTypes bulletType;
     public OwnerTypes ownerType;
 
-    public TankModel(int _tankHealth, float _movementSpeed, float _rotationSpeed, TankTypes _tankType, 
+    public TankModel(int _tankHealth, float _movementSpeed, float _rotationSpeed, TankTypes _tankType,
         Material _tankColor, BulletTypes _bulletType, OwnerTypes _ownerType)
     {
         tankHealth = _tankHealth;

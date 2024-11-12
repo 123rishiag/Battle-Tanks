@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 public class TankView : MonoBehaviour
 {
@@ -120,7 +118,7 @@ public class TankView : MonoBehaviour
 
     public void ChangeColor(Material _color)
     {
-        for(int i = 0; i < childs.Length; i++)
+        for (int i = 0; i < childs.Length; i++)
         {
             childs[i].material = _color;
         }
