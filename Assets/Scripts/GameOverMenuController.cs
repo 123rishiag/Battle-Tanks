@@ -16,9 +16,7 @@ public class GameOverMenuController : MonoBehaviour
 
     private void OnMainMenuButtonPressed()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-        SoundManager.Instance.PlayEffect(SoundType.ButtonClick);
-        SoundManager.Instance.PlayMusic(SoundType.BackgroundMusic);
+        gameManager.MainMenu();
     }
 
     public void OnQuitButtonPressed()
