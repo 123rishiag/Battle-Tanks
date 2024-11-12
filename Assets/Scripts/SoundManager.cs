@@ -12,7 +12,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource soundMusic; // Audio source for background music
     [SerializeField] private Sound[] sounds; // Array of sound clips
 
-    private float currentVolume;
+    private float currentEffectVolume;
+    private float currentMusicVolume;
     private SoundType currentMusic;
 
     private void Awake()
@@ -31,20 +32,21 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         PlayMusic(SoundType.BackgroundMusic); // Play background music
-        currentVolume = soundMusic.volume;
+        currentEffectVolume = soundEffect.volume;
+        currentMusicVolume = soundMusic.volume;
     }
 
-    public void MuteGame()
+    public void MuteGame(bool _flag)
     {
-        isMute = !isMute; // Toggle mute
-        SetVolume(isMute ? 0.0f : currentVolume);
+        SetVolume(_flag ? 0.0f : currentEffectVolume, _flag ? 0.0f : currentMusicVolume);
     }
 
-    public void SetVolume(float newVolume)
+    public void SetVolume(float newEffectVolume, float newMusicVolume)
     {
-        currentVolume = newVolume == 0.0f ? soundMusic.volume : newVolume;
-        soundEffect.volume = newVolume;
-        soundMusic.volume = newVolume;
+        currentEffectVolume = newEffectVolume == 0.0f ? soundEffect.volume : newEffectVolume;
+        currentMusicVolume = newMusicVolume == 0.0f ? soundMusic.volume : newMusicVolume;
+        soundEffect.volume = newEffectVolume;
+        soundMusic.volume = newMusicVolume;
     }
 
     public void PlayMusic(SoundType soundType, bool shouldLoop = true)
