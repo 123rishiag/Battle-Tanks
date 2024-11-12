@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class PlayerTankController : TankController
 {
-    public PlayerTankController(TankModel _tankModel, TankView _tankView) : base(_tankModel, _tankView)
-    {
+    public PlayerTankController(TankModel _tankModel, TankView _tankView, Transform _playerTransform) 
+        : base(_tankModel, _tankView, _playerTransform) { }
 
+    public override bool CheckConditionsSatisfied(Vector3 _randomPosition, out RaycastHit _hit)
+    {
+        if (Physics.Raycast(_randomPosition, Vector3.down, out _hit))
+        {
+            return true;
+        }
+        _hit = default;
+        return false;
     }
 
     public override void Move()

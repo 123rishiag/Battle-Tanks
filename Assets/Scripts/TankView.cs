@@ -18,10 +18,10 @@ public class TankView : MonoBehaviour
     [HideInInspector]
     public bool shoot;
 
-    public float spawnRadius = 20f;
+    public float minSpawnRadius = 20f;
+    public float maxSpawnRadius = 30f;
     public float enemyThresholdDistance = 15.0f;
     public float enemyShootInterval = 2.0f;
-
     public float aimSpeed = 5f;
 
     public GameObject tankExplosionEffect;

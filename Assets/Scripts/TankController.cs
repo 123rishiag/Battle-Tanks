@@ -7,25 +7,60 @@ public abstract class TankController
 {
     protected TankModel tankModel;
     protected TankView tankView;
+    protected Transform playerTransform;
 
     private Rigidbody rb;
 
-    public TankController(TankModel _tankModel, TankView _tankView)
+    public TankController(TankModel _tankModel, TankView _tankView, Transform _playerTransform)
     {
         tankModel = _tankModel;
         tankView = GameObject.Instantiate<TankView>(_tankView);
+        playerTransform = _playerTransform;
 
-        Vector3 randomPosition = new Vector3(
-            UnityEngine.Random.Range(-tankView.spawnRadius, tankView.spawnRadius),
-            0f, // Y-axis (assuming ground level)
-            UnityEngine.Random.Range(-tankView.spawnRadius, tankView.spawnRadius)
-        );
-        tankView.transform.position = randomPosition;
+        SpawnTank();
 
         rb = tankView.GetRigidbody();
         tankModel.SetTankController(this);
         tankView.SetTankController(this);
         tankView.ChangeColor(tankModel.tankColor);
+    }
+
+    public abstract bool CheckConditionsSatisfied(Vector3 _randomPosition, out RaycastHit _hit);
+
+    public void SpawnTank()
+    {
+        Vector3 randomPosition = Vector3.zero;
+        bool validPosition = false;
+        int maxAttempts = 10;
+
+        for (int i = 0; i < maxAttempts; i++)
+        {
+            randomPosition = new Vector3(
+                UnityEngine.Random.Range(-tankView.maxSpawnRadius, tankView.maxSpawnRadius),
+                10f,
+                UnityEngine.Random.Range(-tankView.maxSpawnRadius, tankView.maxSpawnRadius)
+            );
+
+            RaycastHit hit;
+            if (CheckConditionsSatisfied(randomPosition, out hit))
+            {
+                if (hit.collider.CompareTag("Ground"))
+                {
+                    randomPosition = hit.point;
+                    validPosition = true;
+                    break;
+                }
+            }
+        }
+
+        if (validPosition)
+        {
+            tankView.transform.position = randomPosition;
+        }
+        else
+        {
+            Debug.LogWarning("Could not find a valid spawn position.");
+        }
     }
 
     public abstract void Move();

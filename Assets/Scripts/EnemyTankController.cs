@@ -5,12 +5,22 @@ using static TankSpawner;
 
 public class EnemyTankController : TankController
 {
-    private Transform playerTransform;
     private float lastShootTime;
 
-    public EnemyTankController(TankModel _tankModel, TankView _tankView, Transform _playerTransform) : base(_tankModel, _tankView)
+    public EnemyTankController(TankModel _tankModel, TankView _tankView, Transform _playerTransform) 
+        : base(_tankModel, _tankView, _playerTransform) { }
+
+    public override bool CheckConditionsSatisfied(Vector3 _randomPosition, out RaycastHit _hit)
     {
-        playerTransform = _playerTransform;
+        if (Vector3.Distance(_randomPosition, playerTransform.position) >= tankView.minSpawnRadius)
+        {
+            if (Physics.Raycast(_randomPosition + Vector3.up * 10f, Vector3.down, out _hit))
+            {
+                return true;
+            }
+        }
+        _hit = default;
+        return false;
     }
 
     public override void Move()
