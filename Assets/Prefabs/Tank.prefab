@@ -80,7 +80,8 @@ MonoBehaviour:
   rotation: 0
   aim: 0
   shoot: 0
-  spawnRadius: 20
+  minSpawnRadius: 20
+  maxSpawnRadius: 30
   enemyThresholdDistance: 15
   enemyShootInterval: 2
   aimSpeed: 5

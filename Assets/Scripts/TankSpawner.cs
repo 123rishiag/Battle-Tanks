@@ -70,7 +70,7 @@ public class TankSpawner : MonoBehaviour
 
     private TankController CreatePlayerTank(TankModel _tankModel, TankView _tankView)
     {
-        TankController tankController = new PlayerTankController(_tankModel, _tankView);
+        TankController tankController = new PlayerTankController(_tankModel, _tankView, null);
         playerTransform = tankController.GetTankView().gameObject.transform;
         return tankController;
     }

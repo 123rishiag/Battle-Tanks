@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23152799110531002}
   m_Layer: 0
   m_Name: Concrete (2)
-  m_TagString: Environment
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 23554975116962258}
   m_Layer: 0
   m_Name: Concrete (8)
-  m_TagString: Environment
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
@@ -759,7 +759,7 @@ GameObject:
   - component: {fileID: 4039464181933366}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Environment
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
@@ -3270,7 +3270,7 @@ GameObject:
   - component: {fileID: 64857859226681010}
   m_Layer: 0
   m_Name: GroundPlane
-  m_TagString: Environment
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
@@ -3706,7 +3706,7 @@ GameObject:
   - component: {fileID: 23270486020960758}
   m_Layer: 0
   m_Name: Concrete (6)
-  m_TagString: Environment
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
@@ -4407,7 +4407,7 @@ GameObject:
   - component: {fileID: 23696700983896016}
   m_Layer: 0
   m_Name: Concrete (7)
-  m_TagString: Environment
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
@@ -5984,7 +5984,7 @@ GameObject:
   - component: {fileID: 23121059113596984}
   m_Layer: 0
   m_Name: Concrete (3)
-  m_TagString: Environment
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
@@ -9242,7 +9242,7 @@ GameObject:
   - component: {fileID: 23977536306141872}
   m_Layer: 0
   m_Name: Concrete (4)
-  m_TagString: Environment
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
@@ -9321,7 +9321,7 @@ GameObject:
   - component: {fileID: 23611007061070224}
   m_Layer: 0
   m_Name: Concrete
-  m_TagString: Environment
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
@@ -10584,7 +10584,7 @@ GameObject:
   - component: {fileID: 23350702716346506}
   m_Layer: 0
   m_Name: Concrete (5)
-  m_TagString: Environment
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
@@ -11037,7 +11037,7 @@ GameObject:
   - component: {fileID: 23233093025983330}
   m_Layer: 0
   m_Name: Concrete (1)
-  m_TagString: Environment
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
