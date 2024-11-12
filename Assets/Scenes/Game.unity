@@ -252,7 +252,7 @@ MonoBehaviour:
     tankType: 0
     tankColor: {fileID: 2100000, guid: b4d1e2e592cd5ed459329dc52de6b865, type: 2}
     bulletType: 1
-  - tankHealth: 10
+  - tankHealth: 1000
     movementSpeed: 25
     rotationSpeed: 2
     tankType: 1
