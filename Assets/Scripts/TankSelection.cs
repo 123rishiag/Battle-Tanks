@@ -9,6 +9,8 @@ public class TankSelection : MonoBehaviour
 
     private void DisableUI()
     {
+        SoundManager.Instance.PlayEffect(SoundType.ButtonClick);
+        SoundManager.Instance.PlayEffect(SoundType.GameStart);
         this.gameObject.SetActive(false);
     }
     public void GreenTankSelected()

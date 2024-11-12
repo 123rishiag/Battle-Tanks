@@ -22,6 +22,7 @@ public class BulletController
     public void Fire(float _fireSpeed, Transform _firePoint)
     {
         rb.velocity = _firePoint.forward * _fireSpeed * Time.deltaTime;
+        SoundManager.Instance.PlayEffect(SoundType.BulletShoot);
     }
 
     public BulletModel GetBulletModel()
