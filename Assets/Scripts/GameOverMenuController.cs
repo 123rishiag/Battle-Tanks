@@ -16,10 +16,13 @@ public class GameOverMenuController : MonoBehaviour
     private void OnReplayButtonPressed()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        SoundManager.Instance.PlayEffect(SoundType.ButtonClick);
+        //SoundManager.Instance.PlayMusic(SoundType.BackgroundMusic);
     }
 
     private void OnQuitButtonPressed()
     {
+        SoundManager.Instance.PlayEffect(SoundType.ButtonQuit);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

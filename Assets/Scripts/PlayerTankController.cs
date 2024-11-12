@@ -11,6 +11,14 @@ public class PlayerTankController : TankController
 
     public override void Move()
     {
+        if (tankView.movement != 0)
+        {
+            SoundManager.Instance.PlayMusic(SoundType.EngineDrive);
+        }
+        else
+        {
+            SoundManager.Instance.PlayMusic(SoundType.EngineIdle);
+        }
         Vector3 moveDirection = tankView.transform.forward * tankView.movement;
         MoveInDirection(moveDirection);
     }
@@ -55,6 +63,7 @@ public class PlayerTankController : TankController
         if (tankModel.currentTankHealth <= 0)
         {
             tankModel.currentTankHealth = 0;
+            SoundManager.Instance.PlayEffect(SoundType.TankExplosion);
         }
     }
 }

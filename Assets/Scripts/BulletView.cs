@@ -32,6 +32,7 @@ public class BulletView : MonoBehaviour
     private void Explode()
     {
         Instantiate(bulletController.GetBulletModel().collisionEffect, transform.position, transform.rotation);
+        SoundManager.Instance.PlayEffect(SoundType.BulletExplosion);
         Destroy(this.gameObject);
     }
 

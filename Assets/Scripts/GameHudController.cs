@@ -23,4 +23,18 @@ public class GameHudController : MonoBehaviour
     {
         enemyLeftText.text = "Enemy Left: " + _enemyLeft;
     }
+
+    public void PauseGame()
+    {
+        if (Time.timeScale == 1f)
+        {
+            SoundManager.Instance.PlayEffect(SoundType.GamePause);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            SoundManager.Instance.PlayEffect(SoundType.GameStart);
+        }
+    }
 }

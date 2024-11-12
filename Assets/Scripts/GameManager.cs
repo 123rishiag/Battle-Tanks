@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private TankController playercontroller;
+    private bool isGameOver = false;
 
     public WaveSpawner waveSpawner;
 
@@ -59,7 +60,7 @@ public class GameManager : MonoBehaviour
 
     private void GameWon()
     {
-        if (waveSpawner.AreAllWavesFinished())
+        if (waveSpawner.AreAllWavesFinished() && !isGameOver)
         {
             ShowGameOver("Game Won!");
         }
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
 
     private void GameLost()
     {
-        if (playercontroller != null && !playercontroller.IsAlive())
+        if (playercontroller != null && !playercontroller.IsAlive() && !isGameOver)
         {
             ShowGameOver("Game Lost!");
         }
@@ -75,24 +76,36 @@ public class GameManager : MonoBehaviour
 
     private void ShowGameOver(string _message)
     {
+        isGameOver = true;
         if (gameOverMenu != null && gameOverText != null)
         {
             gameOverMenu.SetActive(true);
             gameOverText.text = _message;
 
-            // Pausing the game
-            Time.timeScale = 0f;
+            SoundManager.Instance.PlayMusic(SoundType.GameOver, false);
 
             StartCoroutine(HideGameOverMenuAfterDelay(5f));
+            DisablePlayer();
         }
+    }
+
+    private void DisablePlayer()
+    {
+        Camera mainCamera = Camera.main;
+        mainCamera.transform.SetParent(null);
+        playercontroller.GetTankView().gameObject.SetActive(false);
     }
 
     private IEnumerator HideGameOverMenuAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        if (gameOverText != null)
+        if (gameOverMenu != null)
         {
             gameOverText.text = "";
+
+            SoundManager.Instance.PlayMusic(SoundType.BackgroundMusic);
+            // Pausing the game
+            Time.timeScale = 0f;
         }
     }
 }

@@ -53,6 +53,7 @@ public class TankView : MonoBehaviour
     public void Explode()
     {
         Instantiate(tankExplosionEffect, transform.position, transform.rotation);
+        SoundManager.Instance.PlayEffect(SoundType.TankExplosion);
         Destroy(this.gameObject);
     }
 
@@ -73,6 +74,7 @@ public class TankView : MonoBehaviour
         }
 
         mainCamera.transform.localPosition = cameraPosition;
+        SoundManager.Instance.PlayEffect(SoundType.TankExplosion);
     }
 
     public void RunShakeScreenCoroutine()
