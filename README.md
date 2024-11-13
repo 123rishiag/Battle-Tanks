@@ -69,8 +69,8 @@ Battle Tanks is a strategic action game where players control various tanks to e
 
 ## __Video Demo__
 
-[__Watch the Video Demo__]()
+[__Watch the Video Demo__](https://www.loom.com/share/f7d5c72f2ae541c5808a964e1c0c2cbe?sid=d2a9e142-beb9-47f0-89ce-1ee39f4c3c6b)
 
 ## __Play Link__
 
-[__Play the Game__]()
+[__Play the Game__](https://outscal.com/narishabhgarg/game/play-battle-tanks-34-game)
